@@ -12,7 +12,6 @@ exports.createNewChat = function(topic, callBack)
 
         bitly_client.shorten(long_url, function(result)
         {
-            slee
             var chat_info = {topic:topic, url:'http://'+config.server_uri, chat_id:chat_id};
 
             redis.hmset(keys.getChatKey(chat_id), chat_info, function(err, res)
