@@ -12,6 +12,7 @@ var SocketManager =
         SocketManager.socket.on('connect', function()
         {
             chat_id ? SocketManager.sendMessage({action:'join', value:chat_id}) :'';
+
         });
 
         SocketManager.socket.on('message', function(data)
@@ -39,6 +40,7 @@ var SocketManager =
         }
 
         SocketManager.sendMessage({action:'create', value:topic});
+        SocketManager.sendMessage({action: 'get_chat_list', value:topic});
     },
 
     sendChat:function(msg)

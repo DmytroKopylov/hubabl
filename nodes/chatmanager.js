@@ -21,6 +21,10 @@ exports.createNewChat = function(topic, callBack)
         });
 
     });
+    redis.hset('chatName', {topic:topic}, function(err, res)
+    {
+        !err ? console.log("Topic :" +topic) : '';
+    });
 }
 
 exports.getChatInfo = function(chat_id, callBack)
@@ -49,6 +53,22 @@ exports.sendMsgToClient = function(client, action, msg_body)
     console.log(msg_body);
     msg_body.action = action;
     client.send(JSON.stringify(msg_body));
+}
+
+exports.getChatList = function()
+{
+    redis.hgetall('chatName', function(err, results) {
+        if (err) {
+            console.log("Error getting chat ids");
+            // do something like callback(err) or whatever
+        } else {
+            // do something with results
+            for (var chatID in results) {
+                console.log("Chat IDs :" +chatID)
+
+            }
+        }
+    });
 }
 
 exports.addMsgToHistory = function(chat_id, msg)
