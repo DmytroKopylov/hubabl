@@ -1,6 +1,6 @@
 var config = require('../config.js');
 var manager = require('./chatmanager.js');
-var sys  = require('sys');
+var sys  = require('util');
 var io   = require('socket.io');
 var http = require('http');
 var redis_lib = require('redis');
